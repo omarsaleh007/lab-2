@@ -13,9 +13,10 @@ public class charmoveent : MonoBehaviour
     public float groundCheckRadius;
     public LayerMask WhatIsGround;
     private bool grounded;
+    private Animator anim;
     void Start()
     {
-        
+        anim = GetComponent<Animator>();
     }
 
        
@@ -47,6 +48,9 @@ public class charmoveent : MonoBehaviour
             }
             
         }
+        anim.SetFloat("Speed", Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x));
+        anim.SetFloat("Height", GetComponent<Rigidbody2D>().velocity.y);
+        anim.SetBool("Grounded", grounded);
     }
     void Jump()
     {
